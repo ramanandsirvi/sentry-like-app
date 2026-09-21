@@ -6,21 +6,46 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:integration": "vitest run --config vitest.integration.config.mts",
+    "test:watch": "vitest",
+    "format": "prettier --write \"app/**/*.{ts,tsx,css}\" \"db/**/*.ts\" \"lib/**/*.ts\" \"test/**/*.ts\" \"docs/**/*.md\" README.md package.json tsconfig.json drizzle.config.ts vitest.config.mts vitest.integration.config.mts compose.yaml",
+    "format:check": "prettier --check \"app/**/*.{ts,tsx,css}\" \"db/**/*.ts\" \"lib/**/*.ts\" \"test/**/*.ts\" \"docs/**/*.md\" README.md package.json tsconfig.json drizzle.config.ts vitest.config.mts vitest.integration.config.mts compose.yaml",
+    "db:up": "PATH=\"/Applications/Docker.app/Contents/Resources/bin:$PATH\" docker compose up -d --wait postgres",
+    "db:down": "PATH=\"/Applications/Docker.app/Contents/Resources/bin:$PATH\" docker compose down",
+    "db:generate": "drizzle-kit generate",
+    "db:verify": "drizzle-kit check",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "drizzle-orm": "^0.45.3",
     "next": "16.3.5",
+    "postgres": "^3.4.9",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "server-only": "^0.0.1",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^24.13.6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
+    "drizzle-kit": "^0.31.11",
+    "esbuild": "^0.28.2",
+    "eslint": "^9.39.5",
     "eslint-config-next": "16.3.5",
+    "prettier": "^3.9.8",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.11"
+  },
+  "overrides": {
+    "@esbuild-kit/core-utils": {
+      "esbuild": "^0.25.12"
+    }
   }
 }
